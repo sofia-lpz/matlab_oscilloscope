@@ -1,4 +1,5 @@
 clc; clear; close all;
+%Osciloscope
 
 Av = 2e3; %Potential difference in electron gun (V)
 me = 9.1e-31; %mass of electron (kg)
@@ -69,7 +70,7 @@ j = 1; % Counter
 
 while r02(2) < L+yp % while it is within the first deflecting plate
 
-    E = CEPsandwich(r02, ssandwich, L, d, yp); % electric field (V/m)
+    E = EFPsandwich(r02, ssandwich, L, d, yp); % electric field (V/m)
 
     a2 = [(-qe)*E(1)/me (-qe)*E(2)/me (-qe)*E(3)/me]; % acceleration in section 2 (m/s^2)
 
@@ -102,7 +103,7 @@ dt3 = tf3/n; % time division in steps
 k = 1; % counter
 while r03(2) < L*2+yp % while it is within the second deflecting plate
 
-    E1 = CEPhotdog(r03, shotdog, L, d, yp); % electric field (V/m)
+    E1 = EFPhotdog(r03, shotdog, L, d, yp); % electric field (V/m)
     a3 = [(-qe)*E1(1)/me (-qe)*E1(2)/me (-qe)*E1(3)/me]; % acceleration in section 2 (m/s^2)
 
     % calculation of positions and velocities within the plates
@@ -213,5 +214,3 @@ title('Screen')
 fprintf("%5.2f m/s \n", norm(v04)) % print final velocity of each electron
 
 end
-
-

@@ -52,9 +52,9 @@ tc = sqrt(2*yp/a1(2)); % Time it takes for the electron to exit the gun (s)
 t1 = 0:tc/n:tc; % Time division steps
 
 % Calculation of positions and velocities within the gun
-[x1, vx1] = MRUA(r01(1), v01(1), a1(1), t1);
-[y1, vy1] = MRUA(r01(2), v01(2), a1(2), t1);
-[z1, vz1] = MRUA(r01(3), v01(3), a1(3), t1);
+[x1, vx1] = UARM(r01(1), v01(1), a1(1), t1);
+[y1, vy1] = UARM(r01(2), v01(2), a1(2), t1);
+[z1, vz1] = UARM(r01(3), v01(3), a1(3), t1);
 
 % Section 2
 % First deflecting plate (sandwich)
@@ -75,9 +75,9 @@ while r02(2) < L+yp % while it is within the first deflecting plate
     a2 = [(-qe)*E(1)/me (-qe)*E(2)/me (-qe)*E(3)/me]; % acceleration in section 2 (m/s^2)
 
     % calculation of positions and velocities within the plates
-    [x2, vx2] = MRUA(r02(1), v02(1), a2(1), dt2);
-    [y2, vy2] = MRUA(r02(2), v02(2), a2(2), dt2);
-    [z2, vz2] = MRUA(r02(3), v02(3), a2(3), dt2);
+    [x2, vx2] = UARM(r02(1), v02(1), a2(1), dt2);
+    [y2, vy2] = UARM(r02(2), v02(2), a2(2), dt2);
+    [z2, vz2] = UARM(r02(3), v02(3), a2(3), dt2);
 
     r02 = [x2(end), y2(end), z2(end)]; % position of the next point (m)
     v02 = [vx2(end), vy2(end), vz2(end)]; % velocity of the next point (m/s)
@@ -107,9 +107,9 @@ while r03(2) < L*2+yp % while it is within the second deflecting plate
     a3 = [(-qe)*E1(1)/me (-qe)*E1(2)/me (-qe)*E1(3)/me]; % acceleration in section 2 (m/s^2)
 
     % calculation of positions and velocities within the plates
-    [x3, vx3] = MRUA(r03(1), v03(1), a3(1), dt3);
-    [y3, vy3] = MRUA(r03(2), v03(2), a3(2), dt3);
-    [z3, vz3] = MRUA(r03(3), v03(3), a3(3), dt3);
+    [x3, vx3] = UARM(r03(1), v03(1), a3(1), dt3);
+    [y3, vy3] = UARM(r03(2), v03(2), a3(2), dt3);
+    [z3, vz3] = UARM(r03(3), v03(3), a3(3), dt3);
 
     r03 = [x3(end), y3(end), z3(end)]; % position of the next point (m)
     v03 = [vx3(end), vy3(end), vz3(end)]; % velocity of the next point (m/s)
@@ -135,9 +135,9 @@ tf4 = l4/v04(2); % final time in section 3
 t4 = 0:tf4/n:tf4; % time division in steps
 
 % calculation of positions and velocities
-[x4, vx4] = MRUA(r04(1), v04(1), a4(1), t4);
-[y4, vy4] = MRUA(r04(2), v04(2), a4(2), t4);
-[z4, vz4] = MRUA(r04(3), v04(3), a4(3), t4);
+[x4, vx4] = UARM(r04(1), v04(1), a4(1), t4);
+[y4, vy4] = UARM(r04(2), v04(2), a4(2), t4);
+[z4, vz4] = UARM(r04(3), v04(3), a4(3), t4);
 
 v04 = [vx4(end), vy4(end), vz4(end)]; % final velocity of the electron
 
@@ -214,3 +214,5 @@ title('Screen')
 fprintf("%5.2f m/s \n", norm(v04)) % print final velocity of each electron
 
 end
+
+

@@ -1,5 +1,4 @@
 clc; clear; close all;
-%Osciloscope
 
 Av = 2e3; %Potential difference in electron gun (V)
 me = 9.1e-31; %mass of electron (kg)
